@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
-//this module is responsible for displaying the customer list
+//this module is responsible for displaying the employee list
 
-export const CustomerList = () => {
+export const EmployeeList = () => {
     //useState is a hook, it takes a single argument and returns an array
-    const [customers, modifyCustomers] = useState([])
+    const [employees, modifyEmployees] = useState([])
     //useEffect is a hook, it takes two arguments(function and array)
     //sole purpose is to run code when state changes(it's like an event listener)
     useEffect(
         () => {
-            fetch("http://localhost:8088/customers")
+            fetch("http://localhost:8088/employees")
                 .then(res => res.json())
-                .then((customerArray) => {
-                    modifyCustomers(customerArray)
+                .then((employeeArray) => {
+                    modifyEmployees(employeeArray)
                 })
         },
         []
@@ -19,12 +19,12 @@ export const CustomerList = () => {
 
     return (
         <>
-            {/* //iterate customers and convert them from objects to html using jsx
+            {/* //iterate employees and convert them from objects to html using jsx
             //use map array method conversion tool */}
             {
-                customers.map(
-                    (customerObject) => {
-                        return <h2 key={`customer--${customerObject.id}`}>{customerObject.name}</h2>
+                employees.map(
+                    (employeeObject) => {
+                        return <h2 key={`employee--${employeeObject.id}`}>{employeeObject.name}</h2>
                     }
                 )
             }
