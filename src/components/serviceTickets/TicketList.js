@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import "./Tickets.css"
+
 //this module is responsible for displaying the employee list
 
 export const TicketList = () => {
@@ -36,10 +38,13 @@ export const TicketList = () => {
             //use map array method conversion tool */}
             {
                 tickets.map(
-                    (ticketObject) => {
-                        return <div key={`ticket--${ticketObject.id}`}>
-                            <p>{ticketObject.description} submitted by {ticketObject.customer.name} and worked on by {ticketObject.employee.name}</p>
-                            </div>
+                    (ticket) => {
+                        //Write a ternary condition in the string template to apply the emergency CSS class if the ticket is an emergency.
+                        return <div key={`ticket--${ticket.id}`}>
+                            <p className={`ticket`} className={ticket.emergency ? 'emergency' : null}>
+                                {ticket.emergency ? "🚑" : ""} {ticket.description} submitted by {ticket.customer.name} and worked on by {ticket.employee.name}
+                            </p>
+                        </div>
                     }
                 )
             }
