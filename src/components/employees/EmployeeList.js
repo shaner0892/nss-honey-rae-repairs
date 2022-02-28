@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
 //this module is responsible for displaying the employee list
 
 export const EmployeeList = () => {
     //useState is a hook, it takes a single argument and returns an array
     const [employees, modifyEmployees] = useState([])
     const [specialties, setSpecial] = useState("")
+    const history = useHistory()
+
     //useEffect is a hook, it takes two arguments(function and array)
     //sole purpose is to run code when state changes(it's like an event listener)
     useEffect(
@@ -30,6 +34,9 @@ export const EmployeeList = () => {
 
     return (
         <>
+         <div>
+                <button onClick={() => history.push("employees/hire")}>Hire Employee</button>
+            </div>
         <div>
             Specialties: { specialties }
         </div>

@@ -4,6 +4,7 @@ import { EmployeeList } from "./employees/EmployeeList"
 import { TicketList } from "./serviceTickets/TicketList"
 import { CustomerList } from "./customers/CustomerList"
 import { TicketForm } from "./serviceTickets/TicketForm"
+import { HireEmployee } from "./employees/HireEmployee"
 //This is a Controller Component. Its only responsibility to to control the behavior of the system and maps URLs to components.
 //In the ApplicationViews component, you will define how your application will respond when the URL matches each of those patterns. When a user clicks on one of the hyperlinks in the navigation bar, this code dictates which component should be rendered.
 //responsibility is to determine which view of the application should be rendered 
@@ -24,8 +25,12 @@ export const ApplicationViews = () => {
                 <TicketForm />
             </Route>
 
-            <Route path="/employees">
+            <Route exact path="/employees">
                 <EmployeeList />
+            </Route>
+
+            <Route path="/employees/hire">
+                <HireEmployee />
             </Route>
         </>
     )
