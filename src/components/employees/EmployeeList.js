@@ -9,7 +9,7 @@ export const EmployeeList = () => {
     //sole purpose is to run code when state changes(it's like an event listener)
     useEffect(
         () => {
-            fetch("http://localhost:8088/employees")
+            fetch("http://localhost:8080/employees")
                 .then(res => res.json())
                 .then((employeeArray) => {
                     modifyEmployees(employeeArray)
