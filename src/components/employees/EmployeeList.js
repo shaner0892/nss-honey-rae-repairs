@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 //this module is responsible for displaying the employee list
 
@@ -13,7 +13,7 @@ export const EmployeeList = () => {
     //sole purpose is to run code when state changes(it's like an event listener)
     useEffect(
         () => {
-            fetch("http://localhost:8080/employees")
+            fetch("http://localhost:8088/employees")
                 .then(res => res.json())
                 .then((employeeArray) => {
                     modifyEmployees(employeeArray)
@@ -34,7 +34,7 @@ export const EmployeeList = () => {
 
     return (
         <>
-         <div>
+        <div>
                 <button onClick={() => history.push("employees/hire")}>Hire Employee</button>
             </div>
         <div>
@@ -44,11 +44,12 @@ export const EmployeeList = () => {
             //use map array method conversion tool */}
             {
                 employees.map(
-                    (employeeObject) => {
-                        return <p key={`employee--${employeeObject.id}`}>{employeeObject.name}</p>
+                    (employee) => {
+                        return <p key={`employee--${employee.id}`}><Link to={`/employees/${employee.id}`}>{employee.name}</Link></p>
                     }
                 )
             }
         </>
     )
 }
+//<Link to={`/tickets/${ticket.id}`}>{ticket.description}</Link>

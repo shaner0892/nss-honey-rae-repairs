@@ -30,7 +30,7 @@ export const HireEmployee = () => {
         }
 
         //fetch the list of employees from the API
-        return fetch("http://localhost:8080/employees", fetchOption)
+        return fetch("http://localhost:8088/employees", fetchOption)
             .then(() => {
                 history.push("/employees")
             })

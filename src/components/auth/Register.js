@@ -9,7 +9,7 @@ export const Register = (props) => {
     const history = useHistory()
 
     const existingUserCheck = () => {
-        return fetch(`http://localhost:8080/customers?email=${customer.email}`)
+        return fetch(`http://localhost:8088/customers?email=${customer.email}`)
             .then(res => res.json())
             .then(user => !!user.length)
     }
@@ -18,7 +18,7 @@ export const Register = (props) => {
         existingUserCheck()
             .then((userExists) => {
                 if (!userExists) {
-                    fetch("http://localhost:8080/customers", {
+                    fetch("http://localhost:8088/customers", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
@@ -26,6 +26,7 @@ export const Register = (props) => {
                         body: JSON.stringify(customer)
                     })
                         .then(res => res.json())
+                        //this creates a new customer and stores it in localStorage
                         .then(createdUser => {
                             if (createdUser.hasOwnProperty("id")) {
                                 localStorage.setItem("honey_customer", createdUser.id)
@@ -45,7 +46,6 @@ export const Register = (props) => {
         setCustomer(copy)
     }
 
-
     return (
         <main style={{ textAlign: "center" }}>
             <dialog className="dialog dialog--password" ref={conflictDialog}>
@@ -58,8 +58,8 @@ export const Register = (props) => {
                 <fieldset>
                     <label htmlFor="name"> Full Name </label>
                     <input onChange={updateCustomer}
-                           type="text" id="name" className="form-control"
-                           placeholder="Enter your name" required autoFocus />
+                        type="text" id="name" className="form-control"
+                        placeholder="Enter your name" required autoFocus />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="address"> Address </label>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import "./Tickets.css"
 
@@ -14,7 +15,7 @@ export const TicketList = () => {
     //sole purpose is to run code when state changes(it's like an event listener)
     useEffect(
         () => {
-            fetch("http://localhost:8080/serviceTickets?_expand=employee&_expand=customer")
+            fetch("http://localhost:8088/serviceTickets?_expand=employee&_expand=customer")
                 .then(res => res.json())
                 .then((data) => {
                     modifyTickets(data)
@@ -42,7 +43,7 @@ export const TicketList = () => {
                         //Write a ternary condition in the string template to apply the emergency CSS class if the ticket is an emergency.
                         return <div key={`ticket--${ticket.id}`}>
                             <p className={`ticket`} className={ticket.emergency ? 'emergency' : null}>
-                                {ticket.emergency ? "🚑" : ""} {ticket.description} submitted by {ticket.customer.name} and worked on by {ticket.employee.name}
+                                {ticket.emergency ? "🚑" : ""} <Link to={`/tickets/${ticket.id}`}>{ticket.description}</Link> submitted by {ticket.customer.name} and worked on by {ticket.employee.name}
                             </p>
                         </div>
                     }
