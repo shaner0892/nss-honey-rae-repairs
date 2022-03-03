@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { getAllEmployees } from "../ApiManager";
 
 //this module is responsible for displaying the employee list
 
@@ -13,8 +14,7 @@ export const EmployeeList = () => {
     //sole purpose is to run code when state changes(it's like an event listener)
     useEffect(
         () => {
-            fetch("http://localhost:8088/employees")
-                .then(res => res.json())
+            getAllEmployees()
                 .then((employeeArray) => {
                     modifyEmployees(employeeArray)
                 })
@@ -52,4 +52,3 @@ export const EmployeeList = () => {
         </>
     )
 }
-//<Link to={`/tickets/${ticket.id}`}>{ticket.description}</Link>

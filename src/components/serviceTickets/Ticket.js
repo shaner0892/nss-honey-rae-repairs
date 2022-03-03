@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useParams, useHistory } from "react-router-dom"
+import { getAllEmployees } from "../ApiManager"
 
 export const Ticket = () => {
     const [ticket, assignTicket] = useState({})  // State variable for current ticket object
@@ -24,8 +25,7 @@ export const Ticket = () => {
     // Fetch all employees
     useEffect(
         () => {
-            fetch(`http://localhost:8088/employees`)
-                .then(res => res.json())
+            getAllEmployees()
                 .then(syncEmployees)
         },
         []  // Empty dependency array only reacts to JSX initial rendering

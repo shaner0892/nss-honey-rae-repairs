@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { getAllCustomers } from "../ApiManager";
 //this module is responsible for displaying the customer list
 
 export const CustomerList = () => {
@@ -9,8 +10,7 @@ export const CustomerList = () => {
     //sole purpose is to run code when state changes(it's like an event listener)
     useEffect(
         () => {
-            fetch("http://localhost:8088/customers")
-                .then(res => res.json())
+            getAllCustomers()
                 .then((customerArray) => {
                     modifyCustomers(customerArray)
                 })

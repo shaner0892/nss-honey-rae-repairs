@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { getAllServiceTickets } from "../ApiManager";
 import "./Tickets.css"
 
 //this module is responsible for displaying the employee list
@@ -13,11 +14,10 @@ export const TicketList = () => {
 
     //save the fetch function to a variable so that you can invoke it multiple places without repeating code
     const fetchServiceTickets = () => {
-        fetch("http://localhost:8088/serviceTickets?_expand=employee&_expand=customer")
-                .then(res => res.json())
-                .then((data) => {
-                    modifyTickets(data)
-                })
+        getAllServiceTickets()
+            .then((data) => {
+                modifyTickets(data)
+            })
     }
     //useEffect is a hook, it takes two arguments(function and array)
     //sole purpose is to run code when state changes(it's like an event listener)
@@ -56,7 +56,7 @@ export const TicketList = () => {
                     (ticket) => {
                         //Write a ternary condition in the string template to apply the emergency CSS class if the ticket is an emergency.
                         return <div key={`ticket--${ticket.id}`}>
-                            <p className={`ticket`} className={ticket.emergency ? 'emergency' : null}>
+                            <p className={`ticket ${ticket.emergency ? 'emergency' : null}`}>
                                 {ticket.emergency ? "🚑" : ""} <Link to={`/tickets/${ticket.id}`}>{ticket.description}</Link> submitted by {ticket.customer.name} and worked on by {ticket.employee.name}
                             </p>
                             <button onClick={() => {

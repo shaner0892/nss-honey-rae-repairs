@@ -5,6 +5,7 @@ import { Repairs } from './components/Repairs';
 import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 
+//<BrowserRouter> tells React "I will be placing Routes in my Repairs component."
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
