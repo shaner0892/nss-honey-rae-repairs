@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react"
 import { useHistory } from "react-router-dom"
+import { registerCheck } from "../ApiManager";
 import "./Login.css"
 
 export const Register = (props) => {
@@ -8,14 +9,13 @@ export const Register = (props) => {
 
     const history = useHistory()
 
-    const existingUserCheck = () => {
-        return fetch(`http://localhost:8088/customers?email=${customer.email}`)
-            .then(res => res.json())
+    const existingUserCheck = (customer) => {
+        return registerCheck(customer)
             .then(user => !!user.length)
     }
     const handleRegister = (e) => {
         e.preventDefault()
-        existingUserCheck()
+        existingUserCheck(customer)
             .then((userExists) => {
                 if (!userExists) {
                     fetch("http://localhost:8088/customers", {
