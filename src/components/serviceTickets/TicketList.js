@@ -4,10 +4,8 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { getAllServiceTickets } from "../ApiManager";
 import "./Tickets.css"
 
-//this module is responsible for displaying the employee list
 
 export const TicketList = () => {
-    //useState is a hook, it takes a single argument and returns an array
     const [tickets, modifyTickets] = useState([])
     const [active, setActive] = useState("")
     const history = useHistory()
@@ -15,9 +13,7 @@ export const TicketList = () => {
     //save the fetch function to a variable so that you can invoke it multiple places without repeating code
     const fetchServiceTickets = () => {
         getAllServiceTickets()
-            .then((data) => {
-                modifyTickets(data)
-            })
+            .then(modifyTickets)
     }
     //useEffect is a hook, it takes two arguments(function and array)
     //sole purpose is to run code when state changes(it's like an event listener)

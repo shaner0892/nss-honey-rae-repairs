@@ -3,12 +3,11 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { createTicket } from "../ApiManager";
 
 export const TicketForm = () => {
+    const history = useHistory()
     const [ticket, updateTicket] = useState({
         description: "",
         emergency: false
-    });
-
-    const history = useHistory()
+    })
 
     const submitTicket = (evt) => {
         evt.preventDefault()

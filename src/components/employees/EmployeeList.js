@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { getAllEmployees } from "../ApiManager";
 
-//this module is responsible for displaying the employee list
 
 export const EmployeeList = () => {
-    //useState is a hook, it takes a single argument and returns an array
     const [employees, modifyEmployees] = useState([])
     const [specialties, setSpecial] = useState("")
     const history = useHistory()
@@ -15,9 +13,7 @@ export const EmployeeList = () => {
     useEffect(
         () => {
             getAllEmployees()
-                .then((employeeArray) => {
-                    modifyEmployees(employeeArray)
-                })
+                .then(modifyEmployees)
         },
         []
     )

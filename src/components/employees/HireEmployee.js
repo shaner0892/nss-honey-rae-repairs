@@ -2,24 +2,19 @@ import React, { useState } from "react"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export const HireEmployee = () => {
-    //use the useState hook to set initial value of the object
+    const history = useHistory()
     const [employee, updateEmployee] = useState({
         name: "",
         specialty: ""
     });
 
-    const history = useHistory()
-
     const hireEmployee = (evt) => {
-        //capture the evt (event) and prevent the default (form submitted and reset) from happening
         evt.preventDefault()
-        //object that we want to send to our API
         const newEmployee = {
             name: employee.name,
             specialty: employee.specialty,
         }
 
-        //POST it to the API
         const fetchOption = {
             method: "POST",
             headers: {
